@@ -1,0 +1,38 @@
+USE app;
+
+CREATE TABLE teachers (
+  id VARCHAR(36) PRIMARY KEY,
+  email VARCHAR(255) UNIQUE NOT NULL
+);
+
+CREATE TABLE students (
+  id VARCHAR(36) PRIMARY KEY,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  isSuspended BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE registration (
+  teacherId VARCHAR(36) REFERENCES teachers(id),
+  studentId VARCHAR(36) REFERENCES students(id),
+  PRIMARY KEY (teacherId, studentId)
+);
+
+DELIMITER $$
+CREATE TRIGGER insert_id_teachers
+BEFORE INSERT ON teachers
+FOR EACH ROW
+BEGIN
+  SET NEW.id = UUID();
+END
+$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER insert_id_students
+BEFORE INSERT ON students
+FOR EACH ROW
+BEGIN
+  SET NEW.id = UUID();
+END
+$$
+DELIMITER ;

@@ -1,0 +1,30 @@
+version: '3'
+services:
+  database:
+    build: ./db
+    container_name: db
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_HOST=${MYSQL_ROOT_HOST}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - dbvolume:/var/lib/mysql
+  backend:
+    build: ./server
+    container_name: server
+    ports:
+      - "9000:9000"
+    depends_on:
+      - database
+    links:
+      - database
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
+volumes:
+  dbvolume:
