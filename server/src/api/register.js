@@ -1,57 +1,26 @@
 const express = require("express");
 const router = express.Router();
 
-const knex = require("../knex.js");
+const { verify, register } = require("./registerUtils");
+const ClientError = require("../utils/ClientError");
 
-const {
-    getStudentIdsFromEmails,
-    getTeacherIdFromEmail
-} = require("../utils/utils");
-
-router.post("/", (req, res) => {
+const verifyAndRegister = (req, res) => {
     let { teacher, students } = req.body;
-    verifyAndRegister(teacher, students)
+    return verify(teacher, students)
+        .then(({ teacherId, studentIds }) => register(teacherId, studentIds))
         .then(() => res.sendStatus(204))
         .catch(err => {
-            let { code, message } = err;
-            res.status(code).json({ message });
+            if (err instanceof ClientError) {
+                res.status(400).json({ message: err.message });
+            } else {
+                res.status(500).json({ message: err.message });
+            }
         });
-});
-
-const verifyAndRegister = (teacher, students) =>
-    verify(teacher, students).then(({ teacherId, studentIds }) =>
-        register(teacherId, studentIds)
-    );
-
-const verify = (teacher, students) => {
-    if (typeof teacher !== "string" || teacher.length == 0) {
-        return Promise.reject({ code: 400, message: "invalid teacher email" });
-    }
-    if (!Array.isArray(students) || students.length == 0) {
-        return Promise.reject({ code: 400, message: "invalid student email" });
-    }
-    return getTeacherIdFromEmail(teacher).then(teacherId =>
-        getStudentIdsFromEmails(students).then(studentIds => ({
-            teacherId,
-            studentIds
-        }))
-    );
 };
 
-const register = (teacherId, studentIds) =>
-    knex.transaction(trx =>
-        trx
-            .insert(
-                studentIds.map(studentId => ({
-                    teacherId,
-                    studentId
-                }))
-            )
-            .into("registration")
-    );
+router.post("/", verifyAndRegister);
 
 module.exports = {
     router,
-    verify,
-    register
+    verifyAndRegister
 };

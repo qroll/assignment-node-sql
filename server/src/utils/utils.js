@@ -1,12 +1,15 @@
 const knex = require("../knex.js");
 
+const getTeacherIdsFromEmails = emails =>
+    Promise.all(emails.map(email => getTeacherIdFromEmail(email)));
+
 const getTeacherIdFromEmail = email =>
     knex("teachers")
         .select("id")
         .where({ email })
         .then(teacherIds => {
             if (teacherIds.length != 1) {
-                throw { code: 400, message: "invalid teacher email" };
+                return Promise.reject(new Error("teacher not found"));
             }
             return teacherIds[0].id;
         });
@@ -20,7 +23,7 @@ const getStudentIdFromEmail = email =>
         .where({ email })
         .then(studentIds => {
             if (studentIds.length != 1) {
-                throw { code: 400, message: "invalid student email" };
+                return Promise.reject(new Error("student not found"));
             }
             return studentIds[0].id;
         });

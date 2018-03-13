@@ -1,21 +1,24 @@
 {
-  "name": "assignment-node-sql",
-  "version": "1.0.0",
-  "scripts": {
-    "start": "node ./src/server.js",
-    "dev": "nodemon ./src/server.js",
-    "test": "jest --watch"
-  },
-  "dependencies": {
-    "body-parser": "^1.18.2",
-    "dotenv": "^5.0.1",
-    "express": "^4.16.2",
-    "knex": "^0.14.4",
-    "mysql": "^2.15.0"
-  },
-  "devDependencies": {
-    "jest": "^22.4.2",
-    "mock-knex": "^0.4.0",
-    "nodemon": "^1.17.1"
-  }
+    "name": "assignment-node-sql",
+    "version": "1.0.0",
+    "scripts": {
+        "start": "node ./src/server.js",
+        "dev": "nodemon ./src/server.js",
+        "test": "cross-env NODE_ENV=unit jest --watch",
+        "test-integration": "jest --watch"
+    },
+    "dependencies": {
+        "body-parser": "^1.18.2",
+        "dotenv": "^5.0.1",
+        "express": "^4.16.2",
+        "knex": "^0.14.4",
+        "mysql": "^2.15.0"
+    },
+    "devDependencies": {
+        "cross-env": "^5.1.4",
+        "jest": "^22.4.2",
+        "mock-knex": "^0.4.0",
+        "node-mocks-http": "^1.5.8",
+        "nodemon": "^1.17.1"
+    }
 }
