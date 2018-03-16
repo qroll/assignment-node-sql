@@ -11,7 +11,7 @@ const verify = student => {
 
 const suspend = studentId => {
     return knex("students")
-        .where({ studentId })
+        .where({ id: studentId })
         .update({ isSuspended: true });
 };
 

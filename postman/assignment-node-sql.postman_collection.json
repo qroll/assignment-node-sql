@@ -1,0 +1,431 @@
+{
+	"variables": [],
+	"info": {
+		"name": "assignment-node-sql",
+		"_postman_id": "97b94bb4-ba8c-98d5-04ac-39d5891ee1b5",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:9000/api/register",
+			"request": {
+				"url": "localhost:9000/api/register",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"teacher\": \"penelope.fitts@example.com\",\r\n  \"students\":\r\n    [\r\n      \"anthony.lockwood@gmail.com\"\r\n    ]\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9000/api/retrievefornotifications",
+			"request": {
+				"url": "localhost:9000/api/retrievefornotifications",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"teacher\": \"j.stroud@example.com\",\r\n  \"notification\": \"Hello! @everyone @j.stroud@example.com @john.mandrake@gmail.com\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9000/api/suspend",
+			"request": {
+				"url": "localhost:9000/api/suspend",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"student\": \"anthony.lockwood@gmail.com\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9000/api/commonstudents",
+			"request": {
+				"url": {
+					"raw": "localhost:9000/api/commonstudents?teacher=penelope.fitts%40example.com",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"commonstudents"
+					],
+					"query": [
+						{
+							"key": "teacher",
+							"value": "penelope.fitts%40example.com",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"student\": \"anthony.lockwood@gmail.com\"\r\n}"
+				},
+				"description": "one teacher specified"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9000/api/commonstudents",
+			"request": {
+				"url": {
+					"raw": "localhost:9000/api/commonstudents?teacher=j.stroud%40example.com&teacher=jessica.whitwell%40example.com&teacher=penelope.fitts@example.com",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"commonstudents"
+					],
+					"query": [
+						{
+							"key": "teacher",
+							"value": "j.stroud%40example.com",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "teacher",
+							"value": "jessica.whitwell%40example.com",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "teacher",
+							"value": "penelope.fitts@example.com",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"student\": \"anthony.lockwood@gmail.com\"\r\n}"
+				},
+				"description": "multiple teachers specified, no common students"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9000/api/commonstudents",
+			"request": {
+				"url": {
+					"raw": "localhost:9000/api/commonstudents?teacher=j.stroud%40example.com&teacher=jessica.whitwell%40example.com&teacher=penelope.fitts@example.com",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"commonstudents"
+					],
+					"query": [
+						{
+							"key": "teacher",
+							"value": "j.stroud%40example.com",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "teacher",
+							"value": "jessica.whitwell%40example.com",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "teacher",
+							"value": "penelope.fitts@example.com",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"student\": \"anthony.lockwood@gmail.com\"\r\n}"
+				},
+				"description": "multiple teachers specified, common students found"
+			},
+			"response": [
+				{
+					"id": "f97533d2-55b0-4f9e-97ff-b81f4c590a32",
+					"name": "localhost:9000/api/commonstudents",
+					"originalRequest": {
+						"url": {
+							"raw": "localhost:9000/api/commonstudents?teacher=j.stroud%40example.com&teacher=jessica.whitwell%40example.com",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"commonstudents"
+							],
+							"query": [
+								{
+									"key": "teacher",
+									"value": "j.stroud%40example.com",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "teacher",
+									"value": "jessica.whitwell%40example.com",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"student\": \"anthony.lockwood@gmail.com\"\r\n}"
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "connection",
+							"key": "connection",
+							"value": "keep-alive",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "40",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Fri, 16 Mar 2018 21:54:05 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "etag",
+							"key": "etag",
+							"value": "W/\"28-6xqe1kPl+OSousntKO6sHVfzaJs\"",
+							"description": "An identifier for a specific version of a resource, often a message digest"
+						},
+						{
+							"name": "x-powered-by",
+							"key": "x-powered-by",
+							"value": "Express",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookie": [],
+					"responseTime": 38,
+					"body": "{\"students\":[\"john.mandrake@gmail.com\"]}"
+				}
+			]
+		},
+		{
+			"name": "localhost:9000/api/commonstudents copy",
+			"request": {
+				"url": {
+					"raw": "localhost:9000/api/commonstudents?teacher=penelope.fitts%40example.com",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"commonstudents"
+					],
+					"query": [
+						{
+							"key": "teacher",
+							"value": "penelope.fitts%40example.com",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"student\": \"anthony.lockwood@gmail.com\"\r\n}"
+				},
+				"description": "same teacher specified more than once"
+			},
+			"response": [
+				{
+					"id": "8fb961d5-5c1c-4142-8441-d24bc6dce45a",
+					"name": "localhost:9000/api/commonstudents copy",
+					"originalRequest": {
+						"url": {
+							"raw": "localhost:9000/api/commonstudents?teacher=penelope.fitts%40example.com&teacher=penelope.fitts%40example.com",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"commonstudents"
+							],
+							"query": [
+								{
+									"key": "teacher",
+									"value": "penelope.fitts%40example.com",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "teacher",
+									"value": "penelope.fitts%40example.com",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"student\": \"anthony.lockwood@gmail.com\"\r\n}"
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "connection",
+							"key": "connection",
+							"value": "keep-alive",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "66",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Fri, 16 Mar 2018 21:54:53 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "etag",
+							"key": "etag",
+							"value": "W/\"42-ccFiBnnMEsclhM+iyYSZhQ0MHD0\"",
+							"description": "An identifier for a specific version of a resource, often a message digest"
+						},
+						{
+							"name": "x-powered-by",
+							"key": "x-powered-by",
+							"value": "Express",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookie": [],
+					"responseTime": 33,
+					"body": "{\"students\":[\"lucy.carlyle@gmail.com\",\"george.cubbins@gmail.com\"]}"
+				}
+			]
+		}
+	]
+}

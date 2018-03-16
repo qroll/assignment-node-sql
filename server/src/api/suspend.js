@@ -19,7 +19,7 @@ const verifyAndSuspend = (req, res) => {
         });
 };
 
-router.get("/", verifyAndSuspend);
+router.post("/", verifyAndSuspend);
 
 module.exports = {
     router,
