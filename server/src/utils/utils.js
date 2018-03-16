@@ -30,6 +30,7 @@ const getStudentIdFromEmail = email =>
 
 module.exports = {
     getTeacherIdFromEmail,
+    getTeacherIdsFromEmails,
     getStudentIdFromEmail,
     getStudentIdsFromEmails
 };
