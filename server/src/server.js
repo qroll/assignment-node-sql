@@ -24,7 +24,7 @@ app.use("/api/registration", require("./api/registration.js"));
 
 app.use("/api/register", require("./api/register.js").router);
 app.use("/api/commonstudents", require("./api/commonstudents.js").router);
-app.use("/api/suspend", require("./api/suspend.js"));
+app.use("/api/suspend", require("./api/suspend.js").router);
 app.use(
     "/api/retrievefornotifications",
     require("./api/retrievefornotifications.js")
