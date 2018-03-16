@@ -10,6 +10,7 @@ const verifyAndSuspend = (req, res) => {
         .then(studentId => suspend(studentId))
         .then(() => res.sendStatus(204))
         .catch(err => {
+            console.log(err);
             if (err instanceof ClientError) {
                 res.status(400).json({ message: err.message });
             } else {

@@ -1,6 +1,5 @@
 const mockDb = require("mock-knex");
 const tracker = mockDb.getTracker();
-const httpMocks = require("node-mocks-http");
 
 jest.mock("../../utils/utils");
 const utils = require("../../utils/utils");
