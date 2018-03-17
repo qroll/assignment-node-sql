@@ -1,10 +1,20 @@
 const knex = require("../knex.js");
 
-const getTeacherIdsFromEmails = emails =>
-    Promise.all(emails.map(email => getTeacherIdFromEmail(email)));
+// Given an array of emails, retrieve the corresponding teacher ids.
+// Returns a rejected Promise if input is invalid, email does not
+// belong to a teacher or a database error occurred.
+const getTeacherIdsFromEmails = emails => {
+    if (!Array.isArray(emails)) {
+        return Promise.reject(new TypeError("emails is not an array"));
+    }
+    return Promise.all(emails.map(email => getTeacherIdFromEmail(email)));
+};
 
-const getTeacherIdFromEmail = email =>
-    knex("teachers")
+const getTeacherIdFromEmail = email => {
+    if (typeof email !== "string") {
+        return Promise.reject(new TypeError("email is not a string"));
+    }
+    return knex("teachers")
         .select("id")
         .where({ email })
         .then(teacherIds => {
@@ -13,12 +23,23 @@ const getTeacherIdFromEmail = email =>
             }
             return teacherIds[0].id;
         });
+};
 
-const getStudentIdsFromEmails = emails =>
-    Promise.all(emails.map(email => getStudentIdFromEmail(email)));
+// Given an array of emails, retrieve the corresponding student ids.
+// Returns a rejected Promise if input is invalid, email does not
+// belong to a student or a database error occurred.
+const getStudentIdsFromEmails = emails => {
+    if (!Array.isArray(emails)) {
+        return Promise.reject(new TypeError("emails is not an array"));
+    }
+    return Promise.all(emails.map(email => getStudentIdFromEmail(email)));
+};
 
-const getStudentIdFromEmail = email =>
-    knex("students")
+const getStudentIdFromEmail = email => {
+    if (typeof email !== "string") {
+        return Promise.reject(new TypeError("email is not a string"));
+    }
+    return knex("students")
         .select("id")
         .where({ email })
         .then(studentIds => {
@@ -27,6 +48,7 @@ const getStudentIdFromEmail = email =>
             }
             return studentIds[0].id;
         });
+};
 
 module.exports = {
     getTeacherIdFromEmail,

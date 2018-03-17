@@ -10,7 +10,9 @@ const verifyAndRegister = (req, res) => {
         .then(({ teacherId, studentIds }) => register(teacherId, studentIds))
         .then(() => res.sendStatus(204))
         .catch(err => {
-            console.log(err);
+            if (process.env.NODE_ENV === "development") {
+                console.log(err);
+            }
             if (err instanceof ClientError) {
                 res.status(400).json({ message: err.message });
             } else {
