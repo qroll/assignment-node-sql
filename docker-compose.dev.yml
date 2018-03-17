@@ -1,0 +1,7 @@
+version: '3'
+services:
+  database:
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev

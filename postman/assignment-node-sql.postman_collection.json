@@ -10,7 +10,7 @@
 		{
 			"name": "localhost:9000/api/register",
 			"request": {
-				"url": "localhost:9000/api/register",
+				"url": "{{url}}/api/register",
 				"method": "POST",
 				"header": [
 					{
@@ -30,7 +30,7 @@
 		{
 			"name": "localhost:9000/api/retrievefornotifications",
 			"request": {
-				"url": "localhost:9000/api/retrievefornotifications",
+				"url": "{{url}}/api/retrievefornotifications",
 				"method": "POST",
 				"header": [
 					{
@@ -50,7 +50,7 @@
 		{
 			"name": "localhost:9000/api/suspend",
 			"request": {
-				"url": "localhost:9000/api/suspend",
+				"url": "{{url}}/api/suspend",
 				"method": "POST",
 				"header": [
 					{
@@ -61,7 +61,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"student\": \"anthony.lockwood@gmail.com\"\r\n}"
+					"raw": "{\r\n  \"student\": \"john.mandrake@gmail.com\"\r\n}"
 				},
 				"description": ""
 			},
@@ -71,11 +71,10 @@
 			"name": "localhost:9000/api/commonstudents",
 			"request": {
 				"url": {
-					"raw": "localhost:9000/api/commonstudents?teacher=penelope.fitts%40example.com",
+					"raw": "{{url}}/api/commonstudents?teacher=penelope.fitts%40example.com",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "9000",
 					"path": [
 						"api",
 						"commonstudents"
@@ -110,11 +109,10 @@
 			"name": "localhost:9000/api/commonstudents",
 			"request": {
 				"url": {
-					"raw": "localhost:9000/api/commonstudents?teacher=j.stroud%40example.com&teacher=jessica.whitwell%40example.com&teacher=penelope.fitts@example.com",
+					"raw": "{{url}}/api/commonstudents?teacher=j.stroud%40example.com&teacher=jessica.whitwell%40example.com&teacher=penelope.fitts@example.com",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "9000",
 					"path": [
 						"api",
 						"commonstudents"
@@ -161,11 +159,10 @@
 			"name": "localhost:9000/api/commonstudents",
 			"request": {
 				"url": {
-					"raw": "localhost:9000/api/commonstudents?teacher=j.stroud%40example.com&teacher=jessica.whitwell%40example.com&teacher=penelope.fitts@example.com",
+					"raw": "{{url}}/api/commonstudents?teacher=j.stroud%40example.com&teacher=jessica.whitwell%40example.com&teacher=penelope.fitts@example.com",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "9000",
 					"path": [
 						"api",
 						"commonstudents"
@@ -208,7 +205,7 @@
 			},
 			"response": [
 				{
-					"id": "f97533d2-55b0-4f9e-97ff-b81f4c590a32",
+					"id": "fc6f8f1c-1164-4cac-a49f-2ee1d1a5ebd4",
 					"name": "localhost:9000/api/commonstudents",
 					"originalRequest": {
 						"url": {
@@ -302,11 +299,10 @@
 			"name": "localhost:9000/api/commonstudents copy",
 			"request": {
 				"url": {
-					"raw": "localhost:9000/api/commonstudents?teacher=penelope.fitts%40example.com",
+					"raw": "{{url}}/api/commonstudents?teacher=penelope.fitts%40example.com",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "9000",
 					"path": [
 						"api",
 						"commonstudents"
@@ -335,97 +331,7 @@
 				},
 				"description": "same teacher specified more than once"
 			},
-			"response": [
-				{
-					"id": "8fb961d5-5c1c-4142-8441-d24bc6dce45a",
-					"name": "localhost:9000/api/commonstudents copy",
-					"originalRequest": {
-						"url": {
-							"raw": "localhost:9000/api/commonstudents?teacher=penelope.fitts%40example.com&teacher=penelope.fitts%40example.com",
-							"host": [
-								"localhost"
-							],
-							"port": "9000",
-							"path": [
-								"api",
-								"commonstudents"
-							],
-							"query": [
-								{
-									"key": "teacher",
-									"value": "penelope.fitts%40example.com",
-									"equals": true,
-									"description": ""
-								},
-								{
-									"key": "teacher",
-									"value": "penelope.fitts%40example.com",
-									"equals": true,
-									"description": ""
-								}
-							],
-							"variable": []
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"student\": \"anthony.lockwood@gmail.com\"\r\n}"
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"_postman_previewtype": "text",
-					"header": [
-						{
-							"name": "connection",
-							"key": "connection",
-							"value": "keep-alive",
-							"description": "Options that are desired for the connection"
-						},
-						{
-							"name": "content-length",
-							"key": "content-length",
-							"value": "66",
-							"description": "The length of the response body in octets (8-bit bytes)"
-						},
-						{
-							"name": "content-type",
-							"key": "content-type",
-							"value": "application/json; charset=utf-8",
-							"description": "The mime type of this content"
-						},
-						{
-							"name": "date",
-							"key": "date",
-							"value": "Fri, 16 Mar 2018 21:54:53 GMT",
-							"description": "The date and time that the message was sent"
-						},
-						{
-							"name": "etag",
-							"key": "etag",
-							"value": "W/\"42-ccFiBnnMEsclhM+iyYSZhQ0MHD0\"",
-							"description": "An identifier for a specific version of a resource, often a message digest"
-						},
-						{
-							"name": "x-powered-by",
-							"key": "x-powered-by",
-							"value": "Express",
-							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
-						}
-					],
-					"cookie": [],
-					"responseTime": 33,
-					"body": "{\"students\":[\"lucy.carlyle@gmail.com\",\"george.cubbins@gmail.com\"]}"
-				}
-			]
+			"response": []
 		}
 	]
 }

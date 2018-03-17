@@ -8,30 +8,22 @@ const mockConnection = () => {
     return connection;
 };
 
-const development = () => {
-    return require("knex")({
-        client: "mysql",
-        connection: {
-            host: "localhost",
-            user: process.env.DB_USER,
-            password: process.env.DB_PASSWORD,
-            database: process.env.DB_NAME
-        }
-    });
-};
-
-const production = () => {
+const realConnection = () => {
     const connectionString =
         "mysql://" +
         process.env.DB_USER +
         ":" +
         process.env.DB_PASSWORD +
         "@" +
-        process.env.DB_HOST +
+        (process.env.NODE_ENV === "production"
+            ? process.env.DB_HOST
+            : "localhost") +
         ":" +
         process.env.DB_PORT +
         "/" +
         process.env.DB_NAME;
+
+    console.log(connectionString);
 
     return require("knex")({
         client: "mysql",
@@ -44,11 +36,8 @@ const knex = () => {
         case "unit":
             return mockConnection();
             break;
-        case "production":
-            return production();
-            break;
         default:
-            return development();
+            return realConnection();
             break;
     }
 };
